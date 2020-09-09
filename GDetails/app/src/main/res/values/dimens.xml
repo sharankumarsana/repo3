@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="countery_text_size">20sp</dimen>
+    <dimen name="search_bar_dimens">7dp</dimen>
+    <dimen name="button_width">35dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name = "dp_10">10dp</dimen>
+    <dimen name = "dp_2">2dp</dimen>
+    <dimen name = "search_width">325dp</dimen>
+    <dimen name = "search_height">40dp</dimen>
+    <dimen name = "card_height">400dp</dimen>
+    <dimen name = "card_corner">5dp</dimen>
+    <dimen name = "card_elevation">3dp</dimen>
+    <dimen name = "toggle_width">40dp</dimen>
+    <dimen name = "toggle_height">30dp</dimen>
+    <dimen name = "image_width">246dp</dimen>
+    <dimen name = "image_height">138dp</dimen>
+    <dimen name = "image_margintop">28dp</dimen>
+    <dimen name = "flag_height">190dp</dimen>
+    <dimen name = "flag_margintop">16dp</dimen>
+    <dimen name = "detbox_width">212dp</dimen>
+    <dimen name = "detbox_height">198dp</dimen>
+    <dimen name = "dp_popupwidth">318dp</dimen>
+    <dimen name = "dp_popupheight">49dp</dimen>
+    <dimen name ="sp_16">16sp</dimen>
+</resources>

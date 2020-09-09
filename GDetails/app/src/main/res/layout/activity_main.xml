@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+                <EditText
+                    android:hint="@string/app_name"
+                    android:id="@+id/search_bar"
+                    android:layout_width="@dimen/search_width"
+                    android:layout_height="@dimen/search_height"
+                    style="@style/SeacrhEditText"
+                    android:autofillHints="no"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/switchView"
+                    style="@style/Button_style"
+                    android:background="@drawable/grid_button" />
+                <Button
+                    android:id="@+id/sortCards"
+                    style="@style/Button_style"
+                    android:background="@drawable/sort" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:id="@+id/recyclerview">
+
+        </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
