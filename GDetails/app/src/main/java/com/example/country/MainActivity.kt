@@ -10,23 +10,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
 
-    var countries=ArrayList<Country>()
-    lateinit var switchViewButton: Button
-    lateinit var searchbar:EditText
-    lateinit var recycler:RecyclerView
-    private var ascending=true
-    lateinit var sortBtn:Button
-    val adapter = CustomAdapter(countries) // Accessing the Adapter class
+    private var countries=ArrayList<Country>()
+    private lateinit var switchViewButton: Button
+    private lateinit var searchbar:EditText
+    private lateinit var recycler:RecyclerView
+    private var sortval = 1
+    private var gridView = 0
+    private var listView = 1
+    private var type =0
+    private lateinit var gridLayoutManager: RecyclerView.LayoutManager
+    private lateinit var linearLayoutManager: RecyclerView.LayoutManager
+    private lateinit var sortBtn:Button
+    private var adapter = CustomAdapter(countries,listView) // Accessing the Adapter class
     override fun onCreate(savedInstanceState: Bundle?) {
         var viewswitchcount=0
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recycler=findViewById(R.id.recyclerview)
-
+type=listView
         // Layout for inflating Cards
         recycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         countries.add(Country("Afghanistan","Kabul","AF","4","AFG","AF","93","+33.00 +65.00","+60.48 +38.48 +74.88 +29.38",R.drawable.afghanistan))
@@ -61,47 +68,57 @@ class MainActivity : AppCompatActivity() {
         )
         recycler.adapter=adapter
         //Switching between ListView and GridView
+        linearLayoutManager = LinearLayoutManager(applicationContext)
+        gridLayoutManager = GridLayoutManager(applicationContext,2)
         switchViewButton=findViewById(R.id.switchView)
         switchViewButton.setOnClickListener {
             viewswitchcount++
-            if (viewswitchcount%2==0)
+            if (type == gridView)
             {
+                switchViewButton.setBackgroundResource(R.drawable.grid_button)
+                adapter = CustomAdapter(countries,listView)
                 recycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+                recycler.adapter = adapter
+                adapter.notifyDataSetChanged()
                 Toast.makeText(applicationContext, "Showing In Linear Layout", Toast.LENGTH_SHORT).show()
+                type=listView
             }
             else
             {
+                switchViewButton.setBackgroundResource(R.drawable.listicon)
+                adapter = CustomAdapter(countries,gridView)
                 recycler.layoutManager = GridLayoutManager(this, 2)
+                recycler.adapter = adapter
+                adapter.notifyDataSetChanged()
                 Toast.makeText(applicationContext, "Showing in Grid Layout", Toast.LENGTH_SHORT).show()
-                viewswitchcount=1
+                type = gridView
             }
         }
 
         //Sorting the countries based on country names
         sortBtn=findViewById(R.id.sortCards)
         sortBtn.setOnClickListener {
-            sortCards(ascending)
-            ascending=!ascending
+            sortval++
+            if(sortval%2==0){
+                countries.sortBy { it.countryName }
+                adapter.notifyDataSetChanged()
+                Toast.makeText(applicationContext, "sorted in ascending order", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                countries.sortByDescending { it.countryName }
+                sortval = 1
+                adapter.notifyDataSetChanged()
+                Toast.makeText(applicationContext, "sorted in descending order", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     // Function for sorting
-    private fun sortCards(asc:Boolean){
-        if(asc){
-            countries.sortBy{it.countryName  }
-            //recycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-            Toast.makeText(applicationContext, "Sorted in Ascending order from a->z", Toast.LENGTH_SHORT).show()
-        }
-        else{
-            countries.reverse()
-           // recycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-            Toast.makeText(applicationContext, "Sorted in Descending order from z->a", Toast.LENGTH_SHORT).show()
-        }
-    }
+
 
     // Searching Function
     private fun filter(text: String) {
         val filterCountryName: ArrayList<Country> = ArrayList()
-        for (s in countries) if (s.countryName.toLowerCase().contains(text.toLowerCase())) {
+        for (s in countries) if (s.countryName.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
             filterCountryName.add(s)
         }
         else print("No Matches Found")

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/gradient1"
     tools:context=".MainActivity">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <EditText
-                    android:hint="@string/app_name"
+                    android:hint="@string/search_hint"
                     android:id="@+id/search_bar"
                     android:layout_width="@dimen/search_width"
                     android:layout_height="@dimen/search_height"
@@ -23,7 +23,7 @@
                 <Button
                     android:id="@+id/switchView"
                     style="@style/Button_style"
-                    android:background="@drawable/grid_button" />
+                     />
                 <Button
                     android:id="@+id/sortCards"
                     style="@style/Button_style"
@@ -32,7 +32,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:id="@+id/recyclerview">
 
         </androidx.recyclerview.widget.RecyclerView>
