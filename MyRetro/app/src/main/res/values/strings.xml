@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Retro</string>
+    <string name="Name">Name:</string>
+    <string name="Id">User ID:</string>
+    <string name="Status">Status:</string>
+    <string name="Gender">Gender:</string>
+    <string name="Update">Updated At:</string>
+    <string name="Create">Created At:</string>
+    <string name="icon">icon</string>
+    <string name="retrofit">retrofit</string>
+</resources>
